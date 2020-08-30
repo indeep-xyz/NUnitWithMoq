@@ -1,4 +1,4 @@
-using Moq;
+ï»¿using Moq;
 using Moq.Protected;
 using NUnit.Framework;
 using System;
@@ -9,57 +9,57 @@ namespace NUnitWithMoq
     public class Tests
     {
         /// <summary>
-        /// •cš (ƒeƒXƒg—p‚ÌŒÅ’è’l)
+        /// è‹—å­— (ãƒ†ã‚¹ãƒˆç”¨ã®å›ºå®šå€¤)
         /// </summary>
         private string FamilyName { get; set; }
 
         /// <summary>
-        /// –¼‘O (ƒeƒXƒg—p‚ÌŒÅ’è’l)
+        /// åå‰ (ãƒ†ã‚¹ãƒˆç”¨ã®å›ºå®šå€¤)
         /// </summary>
         private string GivenName { get; set; }
 
         /// <summary>
-        /// ”N—î (ƒeƒXƒg—p‚ÌŒÅ’è’l)
+        /// å¹´é½¢ (ãƒ†ã‚¹ãƒˆç”¨ã®å›ºå®šå€¤)
         /// </summary>
         private int Age { get; set; }
 
         /// <summary>
-        /// ƒeƒXƒg‚Ì‹¤’Êİ’èB
+        /// ãƒ†ã‚¹ãƒˆã®å…±é€šè¨­å®šã€‚
         /// </summary>
         [SetUp]
         public void Setup()
         {
-            FamilyName = "•cš";
-            GivenName = "–¼‘O";
+            FamilyName = "è‹—å­—";
+            GivenName = "åå‰";
             Age = 20;
         }
 
         /// <summary>
-        /// CallBase •t‚«Aƒ‚ƒbƒN‰»ƒƒ\ƒbƒh‚È‚µB
+        /// CallBase ä»˜ãã€ãƒ¢ãƒƒã‚¯åŒ–ãƒ¡ã‚½ãƒƒãƒ‰ãªã—ã€‚
         /// </summary>
         [Test]
         public void CallBase_True()
         {
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age) { CallBase = true };
 
-            // CallBase ‚ª true ‚Ì‚½‚ßA–¢İ’è‚Ìƒƒ\ƒbƒh‚Í–{—ˆ‚Ìƒƒ\ƒbƒh‚ªŒÄ‚Ño‚³‚ê‚é
+            // CallBase ãŒ true ã®ãŸã‚ã€æœªè¨­å®šã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯æœ¬æ¥ã®ãƒ¡ã‚½ãƒƒãƒ‰ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
             Assert.AreEqual($"{FamilyName} {GivenName} {Age}", humanMock.Object.CreateFullNameWithAge());
         }
 
         /// <summary>
-        /// CallBase ‚È‚µAƒ‚ƒbƒN‰»ƒƒ\ƒbƒh‚È‚µB
+        /// CallBase ãªã—ã€ãƒ¢ãƒƒã‚¯åŒ–ãƒ¡ã‚½ãƒƒãƒ‰ãªã—ã€‚
         /// </summary>
         [Test]
         public void CallBase_False()
         {
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age);
 
-            // CallBase ‚ª”ñ true ‚Ì‚½‚ßA–¢İ’è‚Ìƒƒ\ƒbƒh‚Í null •Ô‹p‚Æ‚È‚é (ƒƒ\ƒbƒh©‘Ì‚àŒÄ‚Ño‚³‚ê‚È‚¢)
+            // CallBase ãŒé true ã®ãŸã‚ã€æœªè¨­å®šã®ãƒ¡ã‚½ãƒƒãƒ‰ã¯ null è¿”å´ã¨ãªã‚‹ (ãƒ¡ã‚½ãƒƒãƒ‰è‡ªä½“ã‚‚å‘¼ã³å‡ºã•ã‚Œãªã„)
             Assert.AreEqual(null, humanMock.Object.CreateFullNameWithAge());
         }
 
         /// <summary>
-        /// Age ƒvƒƒpƒeƒB‚ğã‘‚«‚·‚éB
+        /// Age ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
         /// </summary>
         [Test]
         public void OverrideProperty_Age()
@@ -67,58 +67,58 @@ namespace NUnitWithMoq
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age) { CallBase = true };
             humanMock.SetupGet(m => m.Age).Returns(9999);
 
-            // ƒvƒƒpƒeƒB‚Ì get ‚ª•Ô‹p‚³‚ê‚Ä‚¢‚é
+            // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã® get ãŒè¿”å´ã•ã‚Œã¦ã„ã‚‹
             Assert.AreEqual($"{FamilyName} {GivenName} 9999", humanMock.Object.CreateFullNameWithAge());
-            Assert.AreEqual($"{FamilyName} {GivenName} 9999Ë", humanMock.Object.CreateFullNameWithAge("Ë"));
+            Assert.AreEqual($"{FamilyName} {GivenName} 9999æ‰", humanMock.Object.CreateFullNameWithAge("æ‰"));
         }
 
         /// <summary>
-        /// ˆø”•t‚«‚Ì CreateFullNameWithAge ‚ğã‘‚«‚·‚éB
+        /// å¼•æ•°ä»˜ãã® CreateFullNameWithAge ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
         /// </summary>
         [Test]
         public void OverrideMethod_CreateFullNameWithAgeUnit()
         {
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age) { CallBase = true };
-            humanMock.Setup(m => m.CreateFullNameWithAge(It.IsAny<string>())).Returns("ã‘‚«");
+            humanMock.Setup(m => m.CreateFullNameWithAge(It.IsAny<string>())).Returns("ä¸Šæ›¸ã");
 
-            // Setup ‚Åw’è‚µ‚½ˆø”\¬‚Ì‚à‚Ì‚ÍŒÄ‚Ño‚³‚ê‚¸ Returns ‚Åİ’è‚µ‚½–ß‚è’l‚ª•Ô‹p‚³‚ê‚Ä‚¢‚é
-            Assert.AreEqual("ã‘‚«", humanMock.Object.CreateFullNameWithAge("Î"));
+            // Setup ã§æŒ‡å®šã—ãŸå¼•æ•°æ§‹æˆã®ã‚‚ã®ã¯å‘¼ã³å‡ºã•ã‚Œãš Returns ã§è¨­å®šã—ãŸæˆ»ã‚Šå€¤ãŒè¿”å´ã•ã‚Œã¦ã„ã‚‹
+            Assert.AreEqual("ä¸Šæ›¸ã", humanMock.Object.CreateFullNameWithAge("æ­³"));
 
-            // Setup ‚Åw’è‚µ‚½ƒƒ\ƒbƒh‚Æ“¯–¼‚¾‚ªAˆø”\¬‚ªˆÙ‚È‚é‚à‚Ì‚Íã‘‚«‚³‚ê‚¸‚Éˆ—
+            // Setup ã§æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã¨åŒåã ãŒã€å¼•æ•°æ§‹æˆãŒç•°ãªã‚‹ã‚‚ã®ã¯ä¸Šæ›¸ãã•ã‚Œãšã«å‡¦ç†
             Assert.AreEqual($"{FamilyName} {GivenName} {Age}", humanMock.Object.CreateFullNameWithAge());
         }
 
         /// <summary>
-        /// ˆø”•t‚«‚Ì CreateFullNameWithAge ‚ğã‘‚«‚·‚éB
+        /// å¼•æ•°ä»˜ãã® CreateFullNameWithAge ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
         /// </summary>
         [Test]
         public void OverrideMethod_CreateFullNameWithAgeUnit_2()
         {
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age) { CallBase = true };
-            humanMock.Setup(m => m.CreateFullNameWithAge("Î")).Returns("ã‘‚«");
+            humanMock.Setup(m => m.CreateFullNameWithAge("æ­³")).Returns("ä¸Šæ›¸ã");
 
-            // Setup ‚Åw’è‚µ‚½ˆø”İ’è‚Æ“¯ˆê‚Ì‚½‚ßAŒÄ‚Ño‚³‚ê‚¸ Returns ‚Åİ’è‚µ‚½–ß‚è’l‚ª•Ô‹p‚³‚ê‚Ä‚¢‚é
-            Assert.AreEqual("ã‘‚«", humanMock.Object.CreateFullNameWithAge("Î"));
+            // Setup ã§æŒ‡å®šã—ãŸå¼•æ•°è¨­å®šã¨åŒä¸€ã®ãŸã‚ã€å‘¼ã³å‡ºã•ã‚Œãš Returns ã§è¨­å®šã—ãŸæˆ»ã‚Šå€¤ãŒè¿”å´ã•ã‚Œã¦ã„ã‚‹
+            Assert.AreEqual("ä¸Šæ›¸ã", humanMock.Object.CreateFullNameWithAge("æ­³"));
 
-            // Setup ‚Åw’è‚µ‚½ƒƒ\ƒbƒh‚Æ“¯–¼EŒ^Šî€‚Ì“¯ˆø”\¬‚¾‚ªAİ’è’l‚ÆˆÙ‚È‚é‚à‚Ì‚Íã‘‚«‚³‚ê‚¸‚Éˆ—
-            Assert.AreEqual($"{FamilyName} {GivenName} {Age}Ë", humanMock.Object.CreateFullNameWithAge("Ë"));
+            // Setup ã§æŒ‡å®šã—ãŸãƒ¡ã‚½ãƒƒãƒ‰ã¨åŒåãƒ»å‹åŸºæº–ã®åŒå¼•æ•°æ§‹æˆã ãŒã€è¨­å®šå€¤ã¨ç•°ãªã‚‹ã‚‚ã®ã¯ä¸Šæ›¸ãã•ã‚Œãšã«å‡¦ç†
+            Assert.AreEqual($"{FamilyName} {GivenName} {Age}æ‰", humanMock.Object.CreateFullNameWithAge("æ‰"));
         }
 
         /// <summary>
-        /// protected ƒƒ\ƒbƒh‚Ìƒ‚ƒbƒN‰»B
+        /// protected ãƒ¡ã‚½ãƒƒãƒ‰ã®ãƒ¢ãƒƒã‚¯åŒ–ã€‚
         /// </summary>
         [Test]
         public void Mock_ProtectedMethod()
         {
             var humanMock = new Mock<Human>(FamilyName, GivenName, Age) { CallBase = true };
-            humanMock.Protected().Setup<string>("CreateFullName").Returns("ã‘‚«");
+            humanMock.Protected().Setup<string>("CreateFullName").Returns("ä¸Šæ›¸ã");
 
-            // ã‘‚«‚µ‚½–ß‚è’l‚ª•Ô‹p‚³‚ê‚Ä‚¢‚é
-            Assert.AreEqual($"ã‘‚« {Age}", humanMock.Object.CreateFullNameWithAge());
+            // ä¸Šæ›¸ãã—ãŸæˆ»ã‚Šå€¤ãŒè¿”å´ã•ã‚Œã¦ã„ã‚‹
+            Assert.AreEqual($"ä¸Šæ›¸ã {Age}", humanMock.Object.CreateFullNameWithAge());
         }
 
         /// <summary>
-        /// protected ƒƒ\ƒbƒh‚ÌÀsB
+        /// protected ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè¡Œã€‚
         /// </summary>
         [Test]
         public void Run_ProtectedMethod()
@@ -127,7 +127,7 @@ namespace NUnitWithMoq
             Type type = human.GetType();
             MethodInfo methodInfo = type.GetMethod("CreateFullName", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            // ˆø”•t‚«ƒƒ\ƒbƒh‚Ìê‡A‘æ“ñˆø”‚Í object[] Œ^‚Ì’l‚ğ“n‚·
+            // å¼•æ•°ä»˜ããƒ¡ã‚½ãƒƒãƒ‰ã®å ´åˆã€ç¬¬äºŒå¼•æ•°ã¯ object[] å‹ã®å€¤ã‚’æ¸¡ã™
             Assert.AreEqual($"{FamilyName} {GivenName}", methodInfo.Invoke(human, null));
         }
     }

@@ -1,31 +1,31 @@
-namespace NUnitWithMoq
+ï»¿namespace NUnitWithMoq
 {
     /// <summary>
-    /// ƒeƒXƒg‘ÎÛƒNƒ‰ƒXB
+    /// ãƒ†ã‚¹ãƒˆå¯¾è±¡ã‚¯ãƒ©ã‚¹ã€‚
     /// </summary>
     public class Human
     {
     /// <summary>
-    /// •cš
+    /// è‹—å­—
     /// </summary>
     private string FamilyName { get; }
 
     /// <summary>
-    /// –¼‘O
+    /// åå‰
     /// </summary>
     private string GivenName { get; }
 
     /// <summary>
-    /// ”N—î
+    /// å¹´é½¢
     /// </summary>
     public virtual int Age { get; }
 
         /// <summary>
-        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
         /// </summary>
-        /// <param name="familyName">•cš</param>
-        /// <param name="givenName">–¼‘O</param>
-        /// <param name="age">”N—î</param>
+        /// <param name="familyName">è‹—å­—</param>
+        /// <param name="givenName">åå‰</param>
+        /// <param name="age">å¹´é½¢</param>
         public Human(string familyName, string givenName, int age)
         {
             FamilyName = familyName;
@@ -34,27 +34,27 @@ namespace NUnitWithMoq
         }
 
         /// <summary>
-        /// ƒtƒ‹ƒl[ƒ€‚ğì¬‚·‚éB
+        /// ãƒ•ãƒ«ãƒãƒ¼ãƒ ã‚’ä½œæˆã™ã‚‹ã€‚
         /// </summary>
-        /// <returns>ƒtƒ‹ƒl[ƒ€</returns>
+        /// <returns>ãƒ•ãƒ«ãƒãƒ¼ãƒ </returns>
         protected virtual string CreateFullName()
         {
             return $"{FamilyName} {GivenName}";
         }
 
         /// <summary>
-        /// ”N—î•t‚«‚Ìƒtƒ‹ƒl[ƒ€‚ğì¬‚·‚éB
+        /// å¹´é½¢ä»˜ãã®ãƒ•ãƒ«ãƒãƒ¼ãƒ ã‚’ä½œæˆã™ã‚‹ã€‚
         /// </summary>
-        /// <returns>”N—î•t‚«‚Ìƒtƒ‹ƒl[ƒ€</returns>
+        /// <returns>å¹´é½¢ä»˜ãã®ãƒ•ãƒ«ãƒãƒ¼ãƒ </returns>
         public virtual string CreateFullNameWithAge()
         {
             return $"{CreateFullName()} {Age}";
         }
 
         /// <summary>
-        /// ”N—î‚Æ‚»‚Ì’PˆÊ•t‚«‚Ìƒtƒ‹ƒl[ƒ€‚ğì¬‚·‚éB
+        /// å¹´é½¢ã¨ãã®å˜ä½ä»˜ãã®ãƒ•ãƒ«ãƒãƒ¼ãƒ ã‚’ä½œæˆã™ã‚‹ã€‚
         /// </summary>
-        /// <returns>”N—î‚Æ‚»‚Ì’PˆÊ•t‚«‚Ìƒtƒ‹ƒl[ƒ€</returns>
+        /// <returns>å¹´é½¢ã¨ãã®å˜ä½ä»˜ãã®ãƒ•ãƒ«ãƒãƒ¼ãƒ </returns>
         public virtual string CreateFullNameWithAge(string ageUnit)
         {
             return $"{CreateFullNameWithAge()}{ageUnit}";
